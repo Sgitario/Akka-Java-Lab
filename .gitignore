@@ -1,0 +1,15 @@
+.metadata/
+.settings/
+RemoteSystemsTempFiles/
+bin/
+target/
+ 
+# Package Files #
+*.class
+*.jar
+*.war
+*.ear
+*.db
+*.launch
+*.classpath
+*.project
