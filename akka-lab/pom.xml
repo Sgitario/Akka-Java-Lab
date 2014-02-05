@@ -5,9 +5,9 @@
 	<artifactId>lab</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	
+
 	<properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- Akka -->
 		<akka.version>2.2.3</akka.version>
@@ -29,19 +29,19 @@
 			<artifactId>akka-actor_2.10</artifactId>
 			<version>${akka.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
 			<artifactId>akka-testkit_2.10</artifactId>
 			<version>${akka.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>

@@ -9,7 +9,6 @@ import akka.event.LoggingAdapter;
 public class HelloWorldActor extends UntypedActor {	
 	LoggingAdapter log = Logging.getLogger(getContext().system(), this);
 	
-	
 	private String message;
 	
 	public String getMessage() {
