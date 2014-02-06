@@ -16,9 +16,8 @@ public class Main {
 
 		pingPongActor.tell(PingPongUtils.PING, ActorRef.noSender());
 
-		Thread.sleep(20000);
+		Thread.sleep(2000);
 
 		system.shutdown();
-
 	}
 }

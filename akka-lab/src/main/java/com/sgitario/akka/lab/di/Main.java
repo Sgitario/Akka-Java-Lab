@@ -3,21 +3,17 @@ package com.sgitario.akka.lab.di;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import scala.concurrent.Await;
 import scala.concurrent.Future;
 import scala.concurrent.duration.FiniteDuration;
-
-import com.sgitario.akka.lab.di.actors.CounterActor;
-import com.sgitario.akka.lab.di.utils.MessageEnum;
-import com.sgitario.akka.lab.di.utils.SpringActorProducer;
-
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.util.Timeout;
+
+import com.sgitario.akka.lab.di.utils.MessageEnum;
+import com.sgitario.akka.lab.di.utils.SpringActorProducer;
 
 public class Main {
 	public static void main(String[] args) {
