@@ -5,7 +5,7 @@ import akka.actor.UntypedActor;
 public class GreeterActor extends UntypedActor {
 	
 	public static enum Msg {
-		GREET, DONE;
+		GREET, DONE, GOODBYE;
 	}
 
 	@Override

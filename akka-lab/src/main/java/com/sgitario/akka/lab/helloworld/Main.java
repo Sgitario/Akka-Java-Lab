@@ -1,8 +1,10 @@
 package com.sgitario.akka.lab.helloworld;
 
+import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 
+import com.sgitario.akka.lab.helloworld.actors.GreeterActor;
 import com.sgitario.akka.lab.helloworld.actors.HelloWorldActor;
 
 public class Main {
@@ -11,8 +13,11 @@ public class Main {
         final ActorSystem system = ActorSystem.create("lab");
 
         // Create the 'helloworld' actor
-        system.actorOf(Props.create(HelloWorldActor.class), "helloWorld");
+        ActorRef helloworld = system.actorOf(Props.create(HelloWorldActor.class), "helloWorld");
+        System.out.println("Path: " + helloworld.path().toString());
+        Thread.sleep(200);
         
+        helloworld.tell(GreeterActor.Msg.GOODBYE, ActorRef.noSender());
         Thread.sleep(200);
         
         system.shutdown();
