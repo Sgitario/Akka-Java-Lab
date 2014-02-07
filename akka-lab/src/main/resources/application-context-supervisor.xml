@@ -1,0 +1,40 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+    
+    <!-- Register actors -->
+    <context:component-scan base-package="com.sgitario.akka.lab.di.actors"></context:component-scan>
+    
+    <!-- Initialize contexts -->
+    <bean id="appConfiguration" class="com.sgitario.akka.lab.di.utils.AppConfiguration"/>
+    <bean id="actorSystem" class="akka.actor.ActorSystem" factory-bean="appConfiguration" factory-method="actorSystem"/>
+    <bean id="springAkkaApplicationContextAware" class="com.sgitario.akka.lab.di.utils.SpringAkkaApplicationContextAware" >
+    	<constructor-arg ref="actorSystem" />
+    </bean>
+    
+    <!-- Factories -->
+    <bean id="counterActorsFactory" class="com.sgitario.akka.lab.di.utils.CounterActorsFactory" >
+    	<constructor-arg ref="springAkkaApplicationContextAware" />
+    </bean>
+    
+    <bean id="counterSupervisorFactory" class="com.sgitario.akka.lab.di.utils.CounterSupervisorFactory" >
+    	<constructor-arg ref="springAkkaApplicationContextAware" />
+    	<constructor-arg>
+        <list>
+            <ref bean="countingActor" />
+            <ref bean="countingActor" />
+            <ref bean="countingActor" />
+        </list>
+    	</constructor-arg>      
+    </bean>
+    
+    <!-- Services -->
+    <bean id="countingService" class="com.sgitario.akka.lab.di.services.CountingServiceNewImpl" />
+    
+    <!-- Akka entities -->
+    <bean id="countingActor" class="akka.actor.ActorRef" factory-bean="counterActorsFactory" factory-method="createCountingActor" />
+    <bean id="counterSupervision" class="akka.actor.ActorRef" factory-bean="counterSupervisorFactory" factory-method="createCountingSupervisor" />
+
+</beans>
